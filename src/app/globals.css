@@ -1,26 +1,133 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Noto Sans Hebrew";
+  src: url("./../assets/fonts/NotoSansHebrew-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Noto Sans Hebrew";
+  src: url("./../assets/fonts/NotoSansHebrew-Bold.ttf") format("truetype");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "Noto Sans Hebrew";
+  src: url("./../assets/fonts/NotoSansHebrew_SemiCondensed-Medium.ttf")
+    format("truetype");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Noto Sans Hebrew";
+  src: url("./../assets/fonts/NotoSansHebrew_SemiCondensed-SemiBold.ttf")
+    format("truetype");
+  font-weight: 600;
+}
+
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --primary-text-color: #1a1f2c;
+  --secondary-text-color: #333333;
+  --text-highlight-color: #33a1fd;
+  --text-title-color: #0e1752;
+  --error-color: rgb(239, 67, 67);
+  --highlight-color: rgba(110, 89, 165, 0.8);
+  --highlight-bold-color: #6e4aff;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.highlight {
+  color: var(--text-highlight-color);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+.highlight-secondary {
+  color: var(--highlight-bold-color);
+}
+
+.title-color {
+  color: var(--text-title-color);
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.success {
+  color: #4cd964;
+}
+
+.warning {
+  color: #ff9500;
+}
+
+.info {
+  color: #33a1fd;
+}
+
+.error {
+  color: var(--error-color);
+}
+
+@layer base {
+  * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
   }
+}
+
+@layer components {
+  .cv-tutorial-list-settings li {
+    @apply hover:text-[#33a1fd] py-3 text-wrap cursor-pointer flex-1 m-auto hover:translate-y-[-.5rem] transition duration-300;
+  }
+
+  .cv-tutorial-p-settings p{
+    @apply md:text-2xl text-3xl leading-[1.8];
+  }
+
+  .cv-tutorial-h2-settings h2 {
+    @apply md:text-4xl text-6xl font-bold text-[#33a1fd] mt-16 py-8;
+  }
+}
+
+@layer utilities {
+  .input {
+    @apply bg-[#F9FAFB] text-[#64748B] rounded-xl border-2 border-gray-200 h-16 outline-[#33a1fd] sm:h-13;
+  }
+
+  .input-error {
+    @apply border-red-400;
+  }
+
+  .error-msg {
+    @apply text-red-400 text-xl sm:text-lg;
+  }
+}
+
+html {
+  font-size: clamp(0.7rem, 1.35vw, 1rem);
+  scroll-behavior: smooth;
+  scroll-padding-top: 4.5rem;
+  font-family: Noto Sans Hebrew;
 }
 
 body {
   background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Noto Sans Hebrew";
+  padding: 5rem 14rem 14rem 10rem;
+  margin: 0;
+}
+
+img {
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+body > * {
+  direction: rtl;
 }

@@ -1,103 +1,323 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { useCallback } from "react";
+
+const TOC_ITEMS = [
+  { id: "linkedin-intro", label: "• הקדמה" },
+  { id: "linkedin-first-line", label: "• השורה הראשונה" },
+  { id: "linkedin-structure", label: "• מבנה הטקסט" },
+  { id: "linkedin-one-image", label: "• תמונה אחת שווה אלף מילים" },
+  { id: "linkedin-when-post", label: "• מתי מעלים פוסט?" },
+  { id: "linkedin-how-write", label: "• איך כותבים בכלל?" },
+  { id: "linkedin-personal", label: "• סיפור אישי" },
+  { id: "linkedin-cta", label: "• סגירה עם Call to action" },
+  { id: "linkedin-summary", label: "• סיכום" },
+];
+
+const Home = () => {
+  const handleScroll = useCallback((targetId: string) => {
+    const el = document.getElementById(targetId);
+    if (!el) return;
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, []);
+
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="self-start flex-1 mx-10 cv-tutorial-p-settings cv-tutorial-h2-settings">
+      <div className="px-8 mt-3 py-15 text-center rounded-2xl md:border-2 border-2 border-[#33a1fd]">
+        <h2 className="text-5xl font-bold text-[#33A1FD] mt-0 py-0 mb-10">
+          תוכן עניינים
+        </h2>
+        <ul className="font-bold md:text-2xl text-4xl flex max-w justify-center flex-col gap-4 cv-tutorial-list-settings">
+          {TOC_ITEMS.map(({ id, label }) => (
+            <li key={id}>
+              <button
+                type="button"
+                onClick={() => handleScroll(id)}
+                className="rounded-lg px-4 py-2 text-right transition duration-200 ease-in-out hover:-translate-y-0.5 hover:bg-[#33A1FD0D] hover:text-[#33A1FD] hover:shadow-[0_4px_12px_rgba(51,161,253,0.2)]"
+              >
+                {label}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+      <div className="mt-12 space-y-20 text-[18px] font-['Noto_Sans_Hebrew',sans-serif] md:text-[20px]">
+        <section id="linkedin-intro" className="scroll-mt-[100px] space-y-6">
+          <h2>הקדמה</h2>
+          <p>
+            לפני שנתחיל, אם אתם קוראים את השורות האלו - או שאתם מכינים את הכוח
+            של <strong>שיווק בלינקדאין</strong>, או שאתם עוד לא מבינים, וממש
+            בעוד כמה דקות תבינו.
+          </p>
+          <img
+            src="https://res.cloudinary.com/dpz4zfbq4/image/upload/v1759616611/firstimage_wlxrum.png"
+            alt="תמונת פתיחה לבלוג"
+            loading="lazy"
+            className="mx-auto my-6 w-full max-w-[600px] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.08)]"
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+          <p>
+            למעשה, את העבודה הראשונה שלי בהייטק אני מצאתי דרך{" "}
+            <strong>פוסט בלינקדאין</strong>.
+          </p>
+          <p>זה היה פוסט שבו פרסמתי פרויקט שהכנתי.</p>
+          <p>
+            מנכ״ל סטרטאפ ראה את הפרויקט ושלח לי הודעה, ומהר מאוד התקבלתי לחברה
+            ועבדתי שם חצי שנה.
+          </p>
+          <p>
+            ככה השגתי את המשרה הראשונה, וכן - להשיג את המשרה השניה כבר לא היה
+            כלכך קשה.
+          </p>
+          <p>
+            בטח אתם שואלים את עצמכם, מה הופך אותי לבן אדם שיוצר מדריך לכתיבת
+            פוסטים בלינקדאין.
+          </p>
+          <p>
+            אז לפני התואר התקבלתי לעבודה בסטרטאפ שהייתי שם המשווק הראשי, ולמדתי
+            מהאנשים הכי חזקים בתעשייה את התחום.
+          </p>
+          <p>
+            אז כן, עם הרבה עבודה קשה - זה נהיה לי קל ואני רוצה להפוך את החיים
+            שלכם לקלים גם (:
+          </p>
+          <p>
+            בין היתר, הצלחתי לצבור מעל <strong>10K עוקבים</strong> בלינקדאין,
+            עשרות פוסטים ויראליים - וכמה הצעות עבודה.
+          </p>
+          <p>אז קחו לכם כוס קפה (או מים, יותר בריא) ויאללה, מתחילים</p>
+        </section>
+
+        <section
+          id="linkedin-first-line"
+          className="scroll-mt-[100px] space-y-6"
         >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
+          <h2>השורה הראשונה</h2>
+          <p>
+            מכירים את זה שאתם נכנסים ליוטיוב ואתם רואים תמונה לפני שאתם נכנסים
+            לסרטון עצמו?
+          </p>
+          <p>
+            נכון שהתמונה הזו תמיד מפוצצת? כזו שנותנת לכם הרגשה שאתם רוצים ללחוץ
+            ולראות את הסרטון?
+          </p>
+          <p>ככה זה עובד גם בפוסטים בלינקדאין.</p>
+          <p>
+            <strong>השורה הראשונה</strong> קובעת אם בן אדם יקרא את הפוסט שלכם
+            וימשיך הלאה, או שהוא ימשיך לקרוא, ובתקווה גם יביא לייק ויעורר את
+            האלגוריתם.
+          </p>
+          <p>
+            אז החובה שלכם היא לגרום ל<strong>כותרת מעניינת</strong>.
+          </p>
+          <p>
+            אתם יכולים לשאול שם שאלה את הקוראים, כזו שתגרום להם לרצות לראות מה
+            כתבתם - או כל כותרת אחרת שתגרום לגולל הממוצע בלינקדאין לעצור. תהיו
+            יצירתיים.
+          </p>
+          <img
+            src="https://res.cloudinary.com/dpz4zfbq4/image/upload/v1759616614/secondimage_ydrfzu.png"
+            alt="אילוסטרציה לנושא השורה הראשונה"
+            loading="lazy"
+            className="mx-auto my-6 w-full max-w-[600px] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.08)]"
           />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+          <p>סיימתם לכתוב את הכותרת?</p>
+          <p>
+            תקליקו פעמיים על ה- enter. (שיהיו <strong>2 שורות רווח</strong> אם
+            לא הבנתם, ככה הקורא יראה רק את הכותרת לפני שהוא ילחץ על read more).
+          </p>
+        </section>
+
+        <section
+          id="linkedin-structure"
+          className="scroll-mt-[100px] space-y-6"
         >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
+          <h2>מבנה הטקסט</h2>
+          <p>
+            אם תגללו בלינקדאין, תתחילו לקרוא פוסטים - אתם תגלו שיש{" "}
+            <strong>2 סוגים</strong> של כותבי פוסטים.
+          </p>
+          <p>
+            1.⁠ ⁠אלו שכותבים את כל הפוסט בפסקה אחת. אלו פוסטים שמעייפים לי את
+            העין ואני נוטה לדלג עליהם. וככה גם רוב קוראי הפוסטים.
+          </p>
+          <p>
+            2.⁠ ⁠פוסטים שמחלקים את המלל לפסקאות. ככה גם אני עובד. איך מחלקים
+            לפסקאות? כותבים פסקה של 2 שורות - 3 שורות, נותנים{" "}
+            <strong>2 שורות רווח</strong> וכך שוב עד שאתם מסיימים לכתוב.
+          </p>
+          <p>
+            ככה הכי נעים לעין, וזה נותן לקורא את האופציה להמשיך לקרוא את הפוסט
+            בלי להתאמץ.
+          </p>
+        </section>
+
+        <section
+          id="linkedin-one-image"
+          className="scroll-mt-[100px] space-y-6"
+        >
+          <h2>תמונה אחת שווה אלף מילים</h2>
+          <p>
+            כמו שהבנתם מהכותרת, <strong>תמונה אחת שווה אלף מילים</strong>.
+          </p>
+          <p>אתם חייבים להוסיף תמונה לפוסט בשביל להגדיל את החשיפה.</p>
+          <p>איזה תמונה מוסיפים לפוסט?</p>
+          <p>
+            תמונה של <strong>הפנים שלכם</strong> שקשורה איכשהו לפוסט שכתבתם תביא
+            לכם הכי הרבה חשיפה.
+          </p>
+          <p>ככה פשוט.</p>
+          <img
+            src="https://res.cloudinary.com/dpz4zfbq4/image/upload/v1759616614/thirdimage_qp7ko8.png"
+            alt="אילוסטרציה לנושא תמונה אחת שווה אלף מילים"
+            loading="lazy"
+            className="mx-auto my-6 w-full max-w-[600px] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.08)]"
           />
-          Go to nextjs.org →
-        </a>
-      </footer>
+          <p>לא מתאים לכם לפרסם תמונה שלכם בפוסט בלינקדאין?</p>
+          <p>תנו תמונה שקשורה למה שכתבתם בפוסט.</p>
+          <p>אופציה נוספת, וזו האופציה שאני משתמש בה היא ליצור דמות משלכם.</p>
+          <p>דמות שתהיה סימן ההיכר שלכם. במקרה שלי זה ישנוף חמודי מודי.</p>
+          <p>
+            אני יכול לומר שבאופן די קבוע, כשאני מעלה תמונה עם הפנים שלי - אני
+            מקבל יותר לייקים.
+          </p>
+          <p>
+            אני לא ממש אוהב לפרסם את עצמי, אז דמות קבועה כמו הינשוף עושה חסד
+            עבורי.
+          </p>
+        </section>
+
+        <section
+          id="linkedin-when-post"
+          className="scroll-mt-[100px] space-y-6"
+        >
+          <h2>מתי מעלים פוסט?</h2>
+          <p>אין תשובה אחת נכונה. זה תלוי מה המטרה שלכם.</p>
+          <p>
+            במקרה שלי, אני מכוון לסטודנטים - ואחרי כמה ניסיונות גיליתי שפוסטים
+            שאני מעלה בשעה <strong>11:00</strong> עובדים לי הכי טוב מבחינת
+            חשיפה. אז תחשבו מתי קהל היעד שלכם פעיל בלינקדאין, תנו כמה ניסיונות.
+            פרסמו כמה פעמים בצהריים - כמה בערב, ותראו מתי אתם מקבלים הכי הרבה
+            חשיפה.
+          </p>
+          <p>
+            כמובן שהדבר תלוי מאוד בתוכן הפוסט שלכם, וזה מה שיקבע באופן חד משמעי
+            אם הפוסט שלכם יתפוצץ או לא, אבל גם השעה נותנת בוסט מעולה.
+          </p>
+          <p>זה לגבי השעה. וכל כמה זמן מעלים פוסט?</p>
+          <p>
+            כמה שיותר, ככה יותר טוב. אני משתדל להעלות באופן קבוע ביום שני וביום
+            רביעי.
+          </p>
+        </section>
+
+        <section
+          id="linkedin-how-write"
+          className="scroll-mt-[100px] space-y-6"
+        >
+          <h2>איך כותבים בכלל?</h2>
+          <p>לפני שאסביר לכם איך כותבים, אסביר לכם איך לא כותבים.</p>
+          <p>
+            לא נכנסים לצ׳אט GPT ומבקשים ממנו שיכתוב לכם פוסט, וכן - גם אם אתם
+            מבקשים ממנו שיכתוב כמו בן אדם, ובלי האימוג׳ים שלו.
+          </p>
+          <p>אנשים מזהים את הפוסטים האלו - ופשוט מדלגים. וחבל.</p>
+          <p>עכשיו כשהבנו מה לא עושים, בואו נבין מה כן עושים.</p>
+          <p>
+            <strong>כתיבה שיווקית</strong>. מה זה בכלל?
+          </p>
+          <p>
+            כתיבה שנועדה לשווק אתכם. אני מניח שיש מדריכים באינטרנט, אבל אני אנסה
+            לקצר לכם.
+          </p>
+          <p>
+            תכתבו כאילו אתם כותבים לחבר. זה הטיפ הכי חשוב. לא כאילו אתם מנכ״לים
+            של גוגל ואמאזון ביחד.
+          </p>
+          <p>
+            מעבר לזה, זה עולם שלם ואני ממליץ לקרוא קצת גוגל על כתיבה שיווקית.
+          </p>
+          <p>
+            והיי, תכתבו <strong>בעברית</strong>. זה טיפ לא פחות חשוב מכל מה
+            שקראתם עד עכשיו.
+          </p>
+        </section>
+
+        <section id="linkedin-personal" className="scroll-mt-[100px] space-y-6">
+          <h2>סיפור אישי</h2>
+          <p>
+            תנו קצת סיפור על עצמכם בתוך הפוסט. אנשים מתחברים לאנשים. תשתדלו גם
+            לתת <strong>ערך</strong> בפוסט שלכם.
+          </p>
+          <p>לכתוב ״פוסט חיפוש עבודה״ כולם יכולים, וכולם גם עושים.</p>
+          <p>
+            אני לא אומר שעיקר הפוסט לא צריך להיות חיפוש עבודה, ההפך הוא הנכון.
+            אבל תנו גם קצת מעבר כדי שאנשים יתחברו ויתנו לכם לייק. תהיו יצירתיים.
+            נסו להביא ערך לקוראים בתוך הפוסט.
+          </p>
+          <p>
+            מה הסיבה? שאנשים יביאו לכם לייקים ותגובות. ככה הפוסט שלכם יקבל יותר
+            חשיפה, ובעזרת קצת אמונה - גם חשיפה למגייסים.
+          </p>
+        </section>
+
+        <section id="linkedin-cta" className="scroll-mt-[100px] space-y-6">
+          <h2>
+            סגירה עם Call to action
+          </h2>
+          <p>
+            call to action או <strong>CTA</strong> בקצרה, זו קריאה לקורא של
+            הפוסט לפעולה. איזה פעולה? לייק ותגובה.
+          </p>
+          <p>
+            אם תקראו את הפוסטים שלי, אתם תשימו לב שבסוף כל פוסט אני מבקש לייק אם
+            הקורא התחבר, או שאני מבקש מהם לכתוב משהו בתגובות.
+          </p>
+          <p>
+            ככה בקלות אני מצליח להגיע ל<strong>מעל 500 תגובות</strong> בפוסט.
+          </p>
+          <p>
+            הדוגמא הכי קלאסית היא להכין מדריך חינמי למשהו, ולבקש מהקורא לכתוב
+            ״אני״ כדי שאשלח לו קישור בפרטי אל המדריך.
+          </p>
+          <p>
+            כל תגובה שתקבלו לפוסט שווה <strong>זהב</strong>.
+          </p>
+          <p>במיוחד אם כותב התגובה עם הרבה חיבורים. למה?</p>
+          <p>
+            כי כשמישהו כותב לכם תגובה על הפוסט, החברים של אותו כותב התגובה
+            מקבלים התראה - ואז גם הם נחשפים לפוסט שלכם.
+          </p>
+          <p>ככה, כמו כדור שלג שהולך וגדל עם הזמן - הפוסט שלכם מתפוצץ.</p>
+          <img
+            src="https://res.cloudinary.com/dpz4zfbq4/image/upload/v1759616611/image_four_e9dsvu.png"
+            alt="תמונת סיום – קריאה לפעולה וסיכום"
+            loading="lazy"
+            className="mx-auto my-6 w-full max-w-[600px] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.08)]"
+          />
+        </section>
+
+        <section id="linkedin-summary" className="scroll-mt-[100px] space-y-6">
+          <h2>
+            סיכום
+          </h2>
+          <p>
+            עכשיו כשאתם יודעים איך לכתוב פוסט - זה לא אומר שכל פוסט שלכם יתפוצץ.
+            אבל זה כן אומר שאם תתמידו, ותראו יצירתיות - פוסטים שלכם ישיגו לכם את
+            המשרה שאתם מחפשים.
+          </p>
+          <p>
+            אהבתם מה שקראתם? מוזמנים לכתוב לי <strong>פידבק</strong> (:
+          </p>
+          <p>מבטיח שזה יעשה לי את היום</p>
+          <p>המון בהצלחה, ופה לשאלות</p>
+          <p>
+            <strong>בר - 0528364011</strong>
+          </p>
+        </section>
+      </div>
     </div>
   );
-}
+};
+
+export default Home;
