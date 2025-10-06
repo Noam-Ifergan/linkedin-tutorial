@@ -22,7 +22,8 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="self-start flex-1 mx-10 cv-tutorial-p-settings cv-tutorial-h2-settings">
+    <div className="self-start flex-1 mx-10 cv-tutorial-p-settings cv-tutorial-h2-settings md:px-[14rem] pt-20 pb-30">
+      <h1 className="underline text-[#33A1FD] text-center text-6xl font-bold mb-13">מדריך שיווק הלינקדאין</h1>
       <div className="px-8 mt-3 py-15 text-center rounded-2xl md:border-2 border-2 border-[#33a1fd]">
         <h2 className="text-5xl font-bold text-[#33A1FD] mt-0 py-0 mb-10">
           תוכן עניינים
